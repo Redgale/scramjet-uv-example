@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors"; // <-- 1. Import the cors package
 import { createServer } from "node:http";
 import { hostname } from "node:os";
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
@@ -14,6 +15,8 @@ import wisp from "wisp-server-node";
 
 const bare = createBareServer("/bare/");
 const app = express();
+
+app.use(cors()); // <-- 2. Enable CORS for all Express routes
 
 app.use(express.static("public"));
 app.use("/uv/", express.static(uvPath));
